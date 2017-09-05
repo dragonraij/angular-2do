@@ -15,7 +15,7 @@ export class AppComponent {
   }
 
 
-    onAddTodo(todo: TOdo){
+    onAddTodo(todo: Todo){
         this.todoDataService.addTodo(todo);
     }
 
