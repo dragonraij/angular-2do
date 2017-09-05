@@ -10,26 +10,20 @@ import {TodoDataService} from './todo-data.service';
   providers: [TodoDataService]
 })
 export class AppComponent {
-
-    newTodo: Todo = new Todo();
   
-  // Ask Angular DI system to inject the dependency
-  // associated with the dependency injection token `TodoDataService`
-  // and assign it to a property called `todoDataService`
   constructor(private todoDataService: TodoDataService) {
   }
 
-  // Service is now available as this.todoDataService
-  toggleTodoComplete(todo) {
+
+    onAddTodo(todo: TOdo){
+        this.todoDataService.addTodo(todo);
+    }
+
+    toggleTodoComplete(todo) {
     this.todoDataService.toggleTodoComplete(todo);
   
   }
   
-  addTodo() {
-    this.todoDataService.addTodo(this.newTodo);
-    this.newTodo = new Todo();
-  }
-
   removeTodo(todo) {
     this.todoDataService.deleteTodoById(todo.id);
   }
