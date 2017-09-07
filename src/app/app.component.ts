@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 // Import class so we can register it as dependency injection token
 import {Todo} from './todo';
-import {TodoDataService} from './todo-data.service';
 
 @Component({
   selector: 'app-root',
