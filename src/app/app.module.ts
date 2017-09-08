@@ -21,7 +21,7 @@ import { TodoListFooterComponent } from './todo-list-footer/todo-list-footer.com
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [TodoDataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
