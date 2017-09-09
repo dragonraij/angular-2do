@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 // Import class so we can register it as dependency injection token
 import {Todo} from './todo';
 import {TodoDataService} from './todo-data.service';
@@ -7,29 +7,55 @@ import {TodoDataService} from './todo-data.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: []
+  providers: [TodoDataService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  
+  
+  todos: Todo[] = [];
   
   constructor(private todoDataService: TodoDataService) {
   }
 
-
-    onAddTodo(todo: Todo){
-        this.todoDataService.addTodo(todo);
-    }
-
-    toggleTodoComplete(todo) {
-    this.todoDataService.toggleTodoComplete(todo);
-  
-  }
-  
-  removeTodo(todo) {
-    this.todoDataService.deleteTodoById(todo.id);
+public ngOnInit() {
+    this.todoDataService
+      .getAllTodos()
+      .subscribe(
+        (todos) => {
+          this.todos = todos;
+        }
+      );
   }
 
-  get todos() {
-    return this.todoDataService.getAllTodos();
+
+
+onAddTodo(todo) {
+  this.todoDataService
+    .addTodo(todo)
+    .subscribe(
+      (newTodo) => {
+        this.todos = this.todos.concat(newTodo);
+      }
+    );
+}
+  onToggleTodoComplete(todo) {
+    this.todoDataService
+      .toggleTodoComplete(todo)
+      .subscribe(
+        (updatedTodo) => {
+          todo = updatedTodo;
+        }
+      );
+  }
+
+  onRemoveTodo(todo) {
+    this.todoDataService
+      .deleteTodoById(todo.id)
+      .subscribe(
+        (_) => {
+          this.todos = this.todos.filter((t) => t.id !== todo.id);
+        }
+      );
   }
   
 }

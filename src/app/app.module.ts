@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { TodoDataService } from './todo-data.service';
@@ -9,6 +10,8 @@ import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoListItemComponent } from './todo-list-item/todo-list-item.component';
 import { TodoListFooterComponent } from './todo-list-footer/todo-list-footer.component';
 import { ApiService } from './api.service';
+
+import {AppRoutingModule } from './app-routing.module'
 
 @NgModule({
   declarations: [
@@ -20,7 +23,8 @@ import { ApiService } from './api.service';
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpModule
   ],
   providers: [TodoDataService, ApiService],
   bootstrap: [AppComponent]

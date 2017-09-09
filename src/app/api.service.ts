@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'environments/environment';
 
-import { Http } from '@angular/http';
+import { Http, Response} from '@angular/http';
 import { Todo } from './todo';
 
 import { Observable } from 'rxjs/Observable';
@@ -17,16 +17,15 @@ export class ApiService {
   constructor(private http: Http) { }
 
     // API: GET /todos
-  public getAllTodos(): Observable<Todo[]> {
-    // will use this.http.get()
-    return this.http
-    .get(API_URL + '/todos')
-    .map( response => {
-        const todos = response.json();
-        return todos.map((todo) => new Todo(todo));
-    })
-    .catch(this.handleError);
-  }
+    public getAllTodos(): Observable<Todo[]> {
+      return this.http
+        .get(API_URL + '/todos')
+        .map(response => {
+          const todos = response.json();
+          return todos.map((todo) => new Todo(todo));
+        })
+        .catch(this.handleError);
+    }
 
   // API: POST /todos
   public createTodo(todo: Todo): Observable<Todo> {
