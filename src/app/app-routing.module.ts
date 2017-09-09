@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import {AppComponent } from './app.component';
+import { TodosComponent } from './todos/todos.component';
 
 const routes : Routes = [
     {
@@ -11,7 +12,7 @@ const routes : Routes = [
     
     {
         path : 'todos',
-        component: AppComponent
+        component: TodosComponent
     
     }
 
@@ -20,7 +21,7 @@ const routes : Routes = [
 @NgModule({
     imports : [RouterModule.forRoot(routes)],
     exports: [RouterModule],
-    providers : []
+ 
 
 })
 

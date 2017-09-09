@@ -9,9 +9,11 @@ import { TodoListHeaderComponent } from './todo-list-header/todo-list-header.com
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { TodoListItemComponent } from './todo-list-item/todo-list-item.component';
 import { TodoListFooterComponent } from './todo-list-footer/todo-list-footer.component';
-import { ApiService } from './api.service';
 
-import {AppRoutingModule } from './app-routing.module'
+import { ApiService } from './api.service';
+import {AppRoutingModule } from './app-routing.module';
+
+import { TodosComponent } from './todos/todos.component'
 
 @NgModule({
   declarations: [
@@ -19,12 +21,14 @@ import {AppRoutingModule } from './app-routing.module'
     TodoListHeaderComponent,
     TodoListComponent,
     TodoListItemComponent,
-    TodoListFooterComponent
+    TodoListFooterComponent,
+    TodosComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
-    FormsModule,
-    HttpModule
+    FormsModule
+    
   ],
   providers: [TodoDataService, ApiService],
   bootstrap: [AppComponent]
